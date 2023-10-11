@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-const API_BASE_URL = 'http://pasajeros-service:80';
+// Cambia la URL a la dirección interna del servicio dentro del clúster
+const apiUrl = 'http://hello-app-deployment.default:8080';
 
 function App() {
   const [pasajeros, setPasajeros] = useState([]);
   const [rutInput, setRutInput] = useState('');
 
   const fetchPasajeros = () => {
-    fetch(`${API_BASE_URL}/pasajeros`)
+    fetch(`${apiUrl}/pasajeros`)
       .then(response => response.json())
       .then(data => setPasajeros(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -16,12 +17,11 @@ function App() {
 
   const fetchPasajeroPorRut = () => {
     if (!rutInput) {
-      // Si el campo de entrada está vacío, obtener todos los pasajeros
       fetchPasajeros();
       return;
     }
 
-    fetch(`${API_BASE_URL}/pasajeros/${rutInput}`)
+    fetch(`${apiUrl}/pasajeros/${rutInput}`)
       .then(response => response.json())
       .then(data => setPasajeros([data]))
       .catch(error => console.error('Error fetching data:', error));
