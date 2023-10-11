@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // Cambia la URL a la dirección interna del servicio dentro del clúster
-const apiUrl = 'http://hello-app-deployment.default:8080';
+const apiUrl = 'http://pasajeros-service.default:80';
 
 function App() {
   const [pasajeros, setPasajeros] = useState([]);
