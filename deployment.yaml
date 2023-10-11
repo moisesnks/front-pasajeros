@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-api
+  template:
+    metadata:
+      labels:
+        app: front-api
+    spec:
+      containers:
+      - name: front-api
+        image: gcr.io/annular-form-401215/front-api:latest
+        ports:
+        - containerPort: 80
