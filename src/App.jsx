@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+const API_BASE_URL = 'http://pasajeros-service:80';
+
 function App() {
   const [pasajeros, setPasajeros] = useState([]);
   const [rutInput, setRutInput] = useState('');
 
   const fetchPasajeros = () => {
-    fetch('http://pasajeros-service:80/pasajeros')
+    fetch(`${API_BASE_URL}/pasajeros`)
       .then(response => response.json())
       .then(data => setPasajeros(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -19,7 +21,7 @@ function App() {
       return;
     }
 
-    fetch(`http://pasajeros-service:80/pasajeros/${rutInput}`)
+    fetch(`${API_BASE_URL}/pasajeros/${rutInput}`)
       .then(response => response.json())
       .then(data => setPasajeros([data]))
       .catch(error => console.error('Error fetching data:', error));
