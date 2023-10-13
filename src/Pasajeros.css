@@ -1,0 +1,92 @@
+:root {
+    --primary-bg: #ffffff5e;
+    /* Fondo principal */
+    --primary-text: #333;
+    /* Texto principal */
+    --secondary-bg: #2E3A47;
+    /* Fondo secundario */
+    --secondary-text: #fff;
+    /* Texto secundario */
+    --accent-color: #3498db;
+    /* Color de acento (skyblue) */
+    --odd-row-bg: #4A90E2;
+    /* Color para filas impares */
+    --even-row-bg: #7FB3D5;
+    /* Color para filas pares (celeste más claro que skyblue) */
+    --shadowbox: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.pasajeros {
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60vh;
+    box-shadow: --var(shadowbox);
+    height: 60vh;
+    width: 100%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.pasajero {
+    border-radius: 0.5rem;
+    background-color: var(--secondary-bg);
+    color: var(--secondary-text);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-container {
+    width: 90%;
+    margin: 20px;
+    border-radius: 3px;
+    overflow: auto;
+}
+
+/* Estilos para la tabla de pasajeros */
+.pasajeros-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pasajeros-table th,
+.pasajeros-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.pasajeros-table th {
+    background-color: var(--accent-color);
+}
+
+.pasajeros-table tbody tr:nth-child(odd) {
+    background-color: var(--odd-row-bg);
+    /* Color para filas impares */
+}
+
+.pasajeros-table tbody tr:nth-child(even) {
+    background-color: var(--even-row-bg);
+}
+
+.buscar .input {
+    display: flex;
+    flex-direction: column;
+}

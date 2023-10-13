@@ -1,8 +1,56 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './Pasajeros.css';
 
-// Cambia la URL a la dirección interna del servicio dentro del clúster
 const apiUrl = 'http://34.172.22.189';
+
+function InputForm({ rutInput, setRutInput, fetchPasajeroPorRut }) {
+  return (
+    <div className='input'>
+      {/* Input para ingresar el RUT */}
+      <label htmlFor="rutInput">Ingresa un RUT:</label>
+      <input
+        type="text"
+        id="rutInput"
+        value={rutInput}
+        onChange={e => setRutInput(e.target.value)}
+      />
+      {/* Botón para iniciar la búsqueda */}
+      <button onClick={fetchPasajeroPorRut}>Buscar</button>
+    </div>
+  );
+}
+
+function PasajerosList({ pasajeros }) {
+  return (
+    <div className="table-container">
+      <table className='pasajeros-table'>
+        <thead>
+          <tr>
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Lista de pasajeros */}
+          {pasajeros.map(pasajero => (
+            <tr key={pasajero.rut}>
+              {/* Detalles del pasajero */}
+              <td>{pasajero.rut}</td>
+              <td>{pasajero.nombre}</td>
+              <td>{pasajero.origen}</td>
+              <td>{pasajero.destino}</td>
+              <td>{pasajero.precio}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 
 function App() {
   const [pasajeros, setPasajeros] = useState([]);
@@ -32,30 +80,25 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Listado de Pasajeros</h1>
-      <div>
-        <label htmlFor="rutInput">Ingresa un RUT:</label>
-        <input
-          type="text"
-          id="rutInput"
-          value={rutInput}
-          onChange={e => setRutInput(e.target.value)}
-        />
-        <button onClick={fetchPasajeroPorRut}>Buscar</button>
+    <section className="App">
+      <div className="pasajeros">
+        <h1> Pasajeros Front</h1>
+        <div className="content">
+          <div className="pasajero ver">
+            <h2> Lista de Pasajeros </h2>
+            <PasajerosList pasajeros={pasajeros} />
+          </div>
+          <div className="pasajero buscar">
+            <h2> Buscar Pasajero </h2>
+            <InputForm
+              rutInput={rutInput}
+              setRutInput={setRutInput}
+              fetchPasajeroPorRut={fetchPasajeroPorRut}
+            />
+          </div>
+        </div>
       </div>
-      <ul>
-        {pasajeros.map(pasajero => (
-          <li key={pasajero.rut}>
-            <strong>Rut:</strong> {pasajero.rut},{' '}
-            <strong>Nombre:</strong> {pasajero.nombre},{' '}
-            <strong>Origen:</strong> {pasajero.origen},{' '}
-            <strong>Destino:</strong> {pasajero.destino},{' '}
-            <strong>Precio:</strong> {pasajero.precio}
-          </li>
-        ))}
-      </ul>
-    </div>
+    </section>
   );
 }
 
