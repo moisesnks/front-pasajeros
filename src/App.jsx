@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Pasajeros.css';
 
-const apiUrl = 'http://34.172.22.189';
+const apiUrl = 'http://www.lumonidy.studio';
 
 function InputForm({ rutInput, setRutInput, fetchPasajeroPorRut }) {
   return (
